@@ -1,0 +1,16 @@
+name: shm-open-demo
+version: 1
+summary: Demonstration snap illustrating the use of shm_open 
+description: |
+    This snap shows how to use shm_open() on a snappy system
+apps:
+    demo:
+        command: demo
+    demo-wrapper:
+        command: demo-wrapper
+    demo-builtin:
+        command: demo-builtin
+parts:
+    main:
+        plugin: make
+        source: .
