@@ -26,24 +26,24 @@ static void init_snappy_shm()
 
     if (strlen(SNAP_NAME) > 0 || strlen(SNAP_REVISION) > 0) {
         // NOTE: proper code would use mkdirat, this is not done here.
-        err = snprintf(name, sizeof name, "/dev/shm/%s/", SNAP_NAME);
+        err = snprintf(name, sizeof name, "/dev/shm/snap/%s/", SNAP_NAME);
         if (err < 0 || err == NAME_MAX - 1) {
-            perror("cannot construct path /dev/shm/$SNAP_NAME/");
+            perror("cannot construct path /dev/shm/snap/$SNAP_NAME/");
             return;
         }
         err = mkdir(name, 0700);
         if (err != 0 && errno != EEXIST) {
-            perror("cannot make /dev/shm/$SNAP_NAME/");
+            perror("cannot make /dev/shm/snap/$SNAP_NAME/");
             return;
         }
-        err = snprintf(name, sizeof name, "/dev/shm/%s/%s/", SNAP_NAME, SNAP_REVISION);
+        err = snprintf(name, sizeof name, "/dev/shm/snap/%s/%s/", SNAP_NAME, SNAP_REVISION);
         if (err < 0 || err == NAME_MAX - 1) {
-            perror("cannot construct path /dev/shm/$SNAP_NAME/$SNAP_REVISION/");
+            perror("cannot construct path /dev/shm/snap/$SNAP_NAME/$SNAP_REVISION/");
             return;
         }
         err = mkdir(name, 0700);
         if (err != 0 && errno != EEXIST) {
-            perror("cannot make /dev/shm/$SNAP_NAME/$SNAP_REVISION/");
+            perror("cannot make /dev/shm/snap/$SNAP_NAME/$SNAP_REVISION/");
             return;
         }
         strcpy(snappy_shm_dir, name);
